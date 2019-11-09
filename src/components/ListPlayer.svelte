@@ -1,6 +1,7 @@
 <script>
   import Player from '../components/Player.svelte';
   import RemovePlayer from '../components/RemovePlayer.svelte';
+  import { fade } from 'svelte/transition';
 
   export let players;
 
@@ -18,8 +19,10 @@
     <p> No Players </p>
   {:else}
     {#each players as player}
-      <Player name="{player.name}" points="{player.points}" />
-      <RemovePlayer on:rmplayer={removePlayer} player={player}/>
+      <div class="player-list" transition:fade>
+        <Player name="{player.name}" points="{player.points}" />
+        <RemovePlayer on:rmplayer={removePlayer} player={player}/>
+      </div>
     {/each}
   {/if}
 </div>
