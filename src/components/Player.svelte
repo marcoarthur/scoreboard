@@ -1,4 +1,6 @@
 <script>
+  import { fade } from 'svelte/transition';
+
   export let name;
   export let points;
   let showControls = false;
@@ -24,8 +26,10 @@
   <h3>{points}</h3>
 
   {#if showControls}
-    <button class="btn" on:click={addPoint}>+1</button>
-    <button class="btn btn-dark" on:click={removePoint}>-1</button>
-    <input type="number" bind:value="{points}" />
+    <div class="controls"  transition:fade>
+      <button class="btn" on:click={addPoint}>+1</button>
+      <button class="btn btn-dark" on:click={removePoint}>-1</button>
+      <input type="number" bind:value="{points}" />
+    </div>
   {/if}
 </div>
